@@ -28,7 +28,7 @@ The script is designed to block and unblock IP addresses associated with a domai
 3. Run the script as Administrator:
    - Open `Command Prompt` as Administrator and then run the script with administrator privileges:
    ```bash
-   python keep-it-halal.py
+   python main.py
    ```
 
 ## Usage
