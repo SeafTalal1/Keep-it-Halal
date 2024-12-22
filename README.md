@@ -1,4 +1,4 @@
-# Keep-It-Halal
+# Keep-It-Halal 🌙
 
 ## Purpose
 The script is designed to block and unblock IP addresses associated with a domain using the Windows Firewall. It manages a SQLite database to store the IP addresses linked to domains, allowing the user to add, delete, or view the blocked IPs.
