@@ -23,6 +23,23 @@ def add_to_hosts(domain):
         print(f"An error occurred: {e}")
 
 
+def remove_from_hosts(domain):
+    hosts_path = r"C:/Windows/System32/drivers/etc/hosts"
+    try:
+        with open(hosts_path, 'r+') as file:
+            lines = file.readlines()
+            file.seek(0)
+            for line in lines:
+                if domain not in line:
+                    file.write(line)
+            file.truncate()
+            print(f"{domain} has been removed from the hosts file.")
+    except PermissionError:
+        print("Run the script as Administrator to modify the hosts file.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
 
 def block_ip(ip):
     try:
@@ -122,3 +139,4 @@ def delete_domain_from_db(domain):
             print(f"IP {ip} removed successfully.")
         except subprocess.CalledProcessError as e:
             print(f"Failed to remove IP {ip}: {e}")
+    remove_from_hosts(domain)
