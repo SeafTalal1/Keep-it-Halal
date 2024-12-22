@@ -23,7 +23,7 @@ The script is designed to block and unblock IP addresses associated with a domai
 2. Install the required dependencies:
    - `dns.resolver` comes with the `dnspython` package, which can be installed with:
      ```bash
-     pip install dnspython
+     pip install -r requirements.txt
      ```
 3. Run the script:
    ```bash
