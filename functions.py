@@ -2,6 +2,26 @@ import dns.resolver
 import sqlite3
 import subprocess
 import time
+import os
+
+
+def add_to_hosts(domain):
+    hosts_path = r"C:/Windows/System32/drivers/etc/hosts"  # مسار ملف hosts
+    entry = f"127.0.0.1 {domain}\n"  # الصيغة اللي هنضيفها
+
+    try:
+        with open(hosts_path, 'r+') as file:  # فتح الملف للقراءة والكتابة
+            content = file.read()
+            if entry not in content:  # نتأكد إن الدومين مش موجود
+                file.write(entry)
+                print(f"{domain} has been added to the hosts file.")
+            else:
+                print(f"{domain} is already in the hosts file.")
+    except PermissionError:
+        print("Run the script as Administrator to modify the hosts file.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
 
 def block_ip(ip):
@@ -66,6 +86,7 @@ def save_blocked_ips_db(domain, ips):
     conn.close()                                # End the connection
     for ip in ips:
         block_ip(ip)
+    add_to_hosts(domain)
     print("Blocked IPs saved to database.")
 
 
