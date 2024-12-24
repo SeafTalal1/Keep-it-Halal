@@ -96,7 +96,13 @@ def save_blocked_ips_db(domain, ips):
     cursor = conn.cursor()                      # Cursor is the object that perform our comamnds in DB
 
     for ip in ips:                              # Insert each ip in ips[] in the ip column
-        cursor.execute("INSERT INTO blocked_ips (domain, ip) VALUES (?, ?)", (domain, ip))
+        cursor.execute("SELECT ip FROM blocked_ips WHERE domain = ? AND ip = ?", (domain, ip))
+        existing_ip = cursor.fetchone()
+        if existing_ip:
+            print(f"IP {ip} is already blocked for domain {domain}.")
+        else:
+            cursor.execute("INSERT INTO blocked_ips (domain, ip) VALUES (?, ?)", (domain, ip))
+            block_ip(ip)
 
     
     conn.commit()                               # Save changes 
