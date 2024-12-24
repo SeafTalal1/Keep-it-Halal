@@ -122,10 +122,12 @@ def view_blocked_ips():
     cursor.execute("SELECT * FROM blocked_ips")
     rows = cursor.fetchall()
     if rows:
-        print(f"{'ID':<5} {'Domain':<25} {'IP':<15}")
-        print("-" * 50)
+        print("-" * 57)
+        print(f"|  {'ID':<5} | {'Domain':<25} | {'IP':<15} \t|")
+        print("-" * 57)
         for row in rows:
-            print(f"{row[0]:<5} {row[1]:<25} {row[2]:<15}")
+            print(f"|  {row[0]:<5} | {row[1]:<25} | {row[2]:<15} \t|")
+        print("-" * 57)
     else:
         print("No data found.")
         
