@@ -4,7 +4,10 @@ import subprocess
 import time
 import os
 
+def clear_screen():
+    os.system('cls')
 
+    
 def add_to_hosts(domain):
     hosts_path = r"C:/Windows/System32/drivers/etc/hosts"  # مسار ملف hosts
     entry = f"127.0.0.1 {domain}\n"  # الصيغة اللي هنضيفها
