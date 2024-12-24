@@ -4,7 +4,10 @@ import subprocess
 import time
 import os
 
+def clear_screen():
+    os.system('cls')
 
+    
 def add_to_hosts(domain):
     hosts_path = r"C:/Windows/System32/drivers/etc/hosts"  # مسار ملف hosts
     entry = f"127.0.0.1 {domain}\n"  # الصيغة اللي هنضيفها
@@ -96,7 +99,13 @@ def save_blocked_ips_db(domain, ips):
     cursor = conn.cursor()                      # Cursor is the object that perform our comamnds in DB
 
     for ip in ips:                              # Insert each ip in ips[] in the ip column
-        cursor.execute("INSERT INTO blocked_ips (domain, ip) VALUES (?, ?)", (domain, ip))
+        cursor.execute("SELECT ip FROM blocked_ips WHERE domain = ? AND ip = ?", (domain, ip))
+        existing_ip = cursor.fetchone()
+        if existing_ip:
+            print(f"IP {ip} is already blocked for domain {domain}.")
+        else:
+            cursor.execute("INSERT INTO blocked_ips (domain, ip) VALUES (?, ?)", (domain, ip))
+            block_ip(ip)
 
     
     conn.commit()                               # Save changes 
