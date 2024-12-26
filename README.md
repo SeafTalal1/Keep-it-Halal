@@ -36,7 +36,8 @@ The script will prompt the user with the following options:
 1. **Add Domain**: Enter a domain to block all associated IPs.
 2. **Delete Domain**: Enter a domain to remove it from the database and unblock all associated IPs.
 3. **View all Blocked IPs**: Display all the domains and IPs that have been blocked.
-4. **Quit**: Exit the script.
+4. **Reset Datebase**: Remove all domains and its IPs from database, also from host file
+5. **Quit**: Exit the script.
 
 ## Commands Breakdown
 1. **Add Domain**:
