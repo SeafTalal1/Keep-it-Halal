@@ -3,6 +3,7 @@ import sqlite3
 import subprocess
 import time
 import os
+import pyfiglet
 
 def clear_screen():
     os.system('cls')

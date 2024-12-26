@@ -5,6 +5,8 @@ if __name__ == "__main__":
     create_db()
     clear_screen()
     while True:
+        ascii_art = pyfiglet.figlet_format("Keep it Halal")
+        print(ascii_art)
         print("-" * 50)
         command = input("1. Add Domain\n2. Delete Domain\n3. View all Blocked IPs\n4. Reset Database\n5. Quit\n> ")
         print("-" * 50)
