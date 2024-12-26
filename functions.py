@@ -151,3 +151,25 @@ def delete_domain_from_db(domain):
         except subprocess.CalledProcessError as e:
             print(f"Failed to remove IP {ip}: {e}")
     remove_from_hosts(domain)
+
+def reset_table():
+    conn = sqlite3.connect('blocked_ips.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT ip FROM blocked_ips")
+    ips = [row[0] for row in cursor.fetchall()]
+    conn.commit()
+    for ip in ips:
+        try:
+            subprocess.run(["netsh", "advfirewall", "firewall", "delete", "rule", "name=Block IP", "remoteip=" + ip], check=True)
+            print(f"IP {ip} removed successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to remove IP {ip}: {e}")
+    cursor.execute("SELECT domain FROM blocked_ips")
+    domains = set(row[0] for row in cursor.fetchall())
+    conn.commit()
+    for domain in domains:
+        remove_from_hosts(domain)
+    cursor.execute("DELETE FROM blocked_ips;")
+    cursor.execute("DELETE FROM sqlite_sequence WHERE name='blocked_ips';")
+    conn.commit()
+    cursor.close()

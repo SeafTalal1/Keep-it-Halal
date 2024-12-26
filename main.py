@@ -6,7 +6,7 @@ if __name__ == "__main__":
     clear_screen()
     while True:
         print("-" * 50)
-        command = input("1. Add Domain\n2. Delete Domain\n3. View all Blocked IPs\n4. Quit\n> ")
+        command = input("1. Add Domain\n2. Delete Domain\n3. View all Blocked IPs\n4. Reset Database\n5. Quit\n> ")
         print("-" * 50)
         if command.isdigit():
             command = int(command)
@@ -23,6 +23,9 @@ if __name__ == "__main__":
                 clear_screen()
                 view_blocked_ips()
             elif command == 4:
+                reset_table()
+                print("Database reset successfully")
+            elif command == 5:
                 print("Program CLosed Succesfully")
                 time.sleep(1)
                 clear_screen()
