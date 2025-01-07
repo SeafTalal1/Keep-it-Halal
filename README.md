@@ -1,7 +1,5 @@
 # Keep-It-Halal 🌙
 
-![image](https://github.com/user-attachments/assets/9bce3e15-314e-4382-a899-4bfa91d42210)
-
 ## Purpose
 The script is designed to block and unblock IP addresses associated with a domain using the Windows Firewall. It manages a SQLite database to store the IP addresses linked to domains, allowing the user to add, delete, or view the blocked IPs.
 
