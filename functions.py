@@ -122,17 +122,8 @@ def view_blocked_ips():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM blocked_ips")
     rows = cursor.fetchall()
-    if rows:
-        print("-" * 57)
-        print(f"|  {'ID':<5} | {'Domain':<25} | {'IP':<15} \t|")
-        print("-" * 57)
-        for row in rows:
-            print(f"|  {row[0]:<5} | {row[1]:<25} | {row[2]:<15} \t|")
-        print("-" * 57)
-    else:
-        print("No data found.")
-        
     conn.close()
+    return rows
 
 
 def delete_domain_from_db(domain):
