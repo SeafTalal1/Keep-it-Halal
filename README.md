@@ -58,7 +58,7 @@ The main window of the program consists of the following tabs :
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/keep-it-halal.git
+   git clone https://github.com/SeafTalal1/keep-it-halal.git
    ```
 2. Install the required dependencies:
    - `dns.resolver` comes with the `dnspython` package, which can be installed with:
